@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuarios</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {background-color: #f5f5f5;}
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Usuarios</h1>
+
+    <!-- Formulario para agregar nuevo usuario -->
+    <h2>Agregar nuevo usuario</h2>
+    <form action="agregar.php" method="post">
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Agregar">
+    </form>
+
+    <!-- Tabla para mostrar usuarios existentes -->
+    <h2>Usuarios existentes</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de usuario</th>
+            <th>Nombre</th>
+            <th>Contraseña</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        {% for user in users %}
+    </table>
+
+    <!-- Formulario para editar usuario -->
+    
+    <form action="editar.php" method="post" id="editForm" style="display: none;">
+        <input type="hidden" id="editId" name="id">
+        <label for="editUsername">Nombre de usuario:</label>
+        <input type="text" id="editUsername" name="username" required>
+        <label for="editName">Nombre:</label>
+        <input type="text" id="editName" name="name" required>
+        <label for="editPassword">Contraseña:</label>
+        <input type="password" id="editPassword" name="password" required>
+        <input type="submit" value="Guardar cambios">
+    </form>
+
+    <script>
+        function editUser(id, username, name, password) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editUsername').value = username;
+            document.getElementById('editName').value = name;
+            document.getElementById('editPassword').value = password;
+            document.getElementById('editForm').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
